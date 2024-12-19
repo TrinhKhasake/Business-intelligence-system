@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="157"
-  DTS:VersionGUID="{0B53E5DB-39AE-4406-B9C0-81697EA98830}">
+  DTS:VersionBuild="190"
+  DTS:VersionGUID="{34B499DC-DCBD-4E86-9BEE-9914E4BAD861}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -36,6 +36,18 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Dsn=PostgreSQLG22;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D3264D11-2340-46CD-99D6-3345B70A784F}"
+      DTS:ObjectName="SAKE\MSSQLSERVER01.CompanyX">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SAKE\MSSQLSERVER01;Initial Catalog=CompanyX;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{D3264D11-2340-46CD-99D6-3345B70A784F}SAKE\MSSQLSERVER01.CompanyX;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -209,8 +221,8 @@ ORDER BY CustomerID</property>
               <connections>
                 <connection
                   refId="Package\CustomerDim\Customer Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -359,8 +371,8 @@ ORDER BY CustomerID</property>
               <connections>
                 <connection
                   refId="Package\CustomerDim\CustomerDim.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -505,8 +517,8 @@ where [refTable].[customerid] = ?</property>
               <connections>
                 <connection
                   refId="Package\CustomerDim\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -622,8 +634,8 @@ WHERE [CustomerID]  = ?</property>
               <connections>
                 <connection
                   refId="Package\CustomerDim\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -913,8 +925,8 @@ WHERE [CustomerID]  = ?</property>
               <connections>
                 <connection
                   refId="Package\DateDim\DateDim.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -939,12 +951,6 @@ WHERE [CustomerID]  = ?</property>
                       externalMetadataColumnId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
                       lineageId="Package\DateDim\OLE DB Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
                     <inputColumn
-                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].Columns[Day]"
-                      cachedDataType="i4"
-                      cachedName="Day"
-                      externalMetadataColumnId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[Day]"
-                      lineageId="Package\DateDim\Derived Column.Outputs[Derived Column Output].Columns[Day]" />
-                    <inputColumn
                       refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].Columns[Year]"
                       cachedDataType="i4"
                       cachedName="Year"
@@ -962,18 +968,6 @@ WHERE [CustomerID]  = ?</property>
                       cachedName="Month"
                       externalMetadataColumnId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
                       lineageId="Package\DateDim\Derived Column.Outputs[Derived Column Output].Columns[Month]" />
-                    <inputColumn
-                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].Columns[WeekOfYear]"
-                      cachedDataType="i4"
-                      cachedName="WeekOfYear"
-                      externalMetadataColumnId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[WeekOfYear]"
-                      lineageId="Package\DateDim\Derived Column.Outputs[Derived Column Output].Columns[WeekOfYear]" />
-                    <inputColumn
-                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].Columns[DayOfWeek]"
-                      cachedDataType="i4"
-                      cachedName="DayOfWeek"
-                      externalMetadataColumnId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeek]"
-                      lineageId="Package\DateDim\Derived Column.Outputs[Derived Column Output].Columns[DayOfWeek]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -990,10 +984,6 @@ WHERE [CustomerID]  = ?</property>
                       dataType="dbTimeStamp"
                       name="ModifiedDate" />
                     <externalMetadataColumn
-                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[Day]"
-                      dataType="i4"
-                      name="Day" />
-                    <externalMetadataColumn
                       refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
                       dataType="i4"
                       name="Year" />
@@ -1006,13 +996,21 @@ WHERE [CustomerID]  = ?</property>
                       dataType="i4"
                       name="Month" />
                     <externalMetadataColumn
-                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[WeekOfYear]"
+                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
                       dataType="i4"
-                      name="WeekOfYear" />
+                      name="SalesOrderID" />
                     <externalMetadataColumn
-                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeek]"
+                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
                       dataType="i4"
-                      name="DayOfWeek" />
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[Week Of Year]"
+                      dataType="i4"
+                      name="Week Of Year" />
+                    <externalMetadataColumn
+                      refId="Package\DateDim\DateDim.Inputs[OLE DB Destination Input].ExternalColumns[Day Of Week]"
+                      dataType="i4"
+                      name="Day Of Week" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1306,8 +1304,8 @@ where [refTable].[orderdate] = ?</property>
               <connections>
                 <connection
                   refId="Package\DateDim\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1446,8 +1444,8 @@ FROM Sales.SalesOrderHeader</property>
               <connections>
                 <connection
                   refId="Package\DateDim\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1555,11 +1553,11 @@ FROM Sales.SalesOrderHeader</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{53063BDC-FA78-42F3-AD53-A86D2547D00E}"
+          SQLTask:Connection="{D3264D11-2340-46CD-99D6-3345B70A784F}"
           SQLTask:SqlStatementSource="select max(modifieddate) as maxdate&#xA;from dbo.CustomerDim"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -1578,11 +1576,11 @@ FROM Sales.SalesOrderHeader</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task 1"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{53063BDC-FA78-42F3-AD53-A86D2547D00E}"
+          SQLTask:Connection="{D3264D11-2340-46CD-99D6-3345B70A784F}"
           SQLTask:SqlStatementSource="select max(modifieddate) as maxdate&#xA;from dbo.TerritoryDim"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -1601,11 +1599,11 @@ FROM Sales.SalesOrderHeader</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task 2"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{53063BDC-FA78-42F3-AD53-A86D2547D00E}"
+          SQLTask:Connection="{D3264D11-2340-46CD-99D6-3345B70A784F}"
           SQLTask:SqlStatementSource="select max(modifieddate) as maxdate&#xA;from dbo.PromotionDim"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -1624,11 +1622,11 @@ FROM Sales.SalesOrderHeader</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task 3"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{53063BDC-FA78-42F3-AD53-A86D2547D00E}"
+          SQLTask:Connection="{D3264D11-2340-46CD-99D6-3345B70A784F}"
           SQLTask:SqlStatementSource="select max(modifieddate) as maxdate&#xA;from dbo.ProductDim"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -1647,11 +1645,11 @@ FROM Sales.SalesOrderHeader</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Execute SQL Task 4"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{53063BDC-FA78-42F3-AD53-A86D2547D00E}"
+          SQLTask:Connection="{D3264D11-2340-46CD-99D6-3345B70A784F}"
           SQLTask:SqlStatementSource="select max(modifieddate) as maxdate&#xA;from dbo.DateDim"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -1673,7 +1671,7 @@ FROM Sales.SalesOrderHeader</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{53063BDC-FA78-42F3-AD53-A86D2547D00E}"
+          SQLTask:Connection="{D3264D11-2340-46CD-99D6-3345B70A784F}"
           SQLTask:SqlStatementSource="select max(modifieddate) as maxdate&#xA;from dbo.SalesFact"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -1696,13 +1694,732 @@ FROM Sales.SalesOrderHeader</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{53063BDC-FA78-42F3-AD53-A86D2547D00E}"
+          SQLTask:Connection="{D3264D11-2340-46CD-99D6-3345B70A784F}"
           SQLTask:SqlStatementSource="select max(modifieddate) as maxdate&#xA;from dbo.LocationDim"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
             SQLTask:ResultName="maxdate"
             SQLTask:DtsVariableName="User::varmaxdate" />
         </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 7"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{0B04F0CC-E962-4940-B741-505164406AAF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 7"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D3264D11-2340-46CD-99D6-3345B70A784F}"
+          SQLTask:SqlStatementSource="select max(modifieddate) as maxdate&#xA;from dbo.InventoryDim"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="maxdate"
+            SQLTask:DtsVariableName="User::varmaxdate" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\InventoryDim"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{3CFDCC47-99C2-4F89-86BA-22571A80AF87}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="InventoryDim"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\InventoryDim\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\InventoryDim\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\InventoryDim\Conditional Split.Inputs[Conditional Split Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\InventoryDim\Conditional Split.Outputs[Case 1]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 1"
+                  synchronousInputId="Package\InventoryDim\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">(DT_DATE)#{Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]} &gt; (DT_DATE)@[User::varmaxdate]</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">(DT_DATE)ModifiedDate &gt; (DT_DATE)@[User::varmaxdate]</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\InventoryDim\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\InventoryDim\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\InventoryDim\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\InventoryDim\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\InventoryDim\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\InventoryDim\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\InventoryDim\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\InventoryDim\Inventory Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Inventory Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Production].[ProductInventory]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    pi.ProductID,
+    pi.Shelf,
+    pi.Bin,
+    pi.Quantity,
+    pi.ModifiedDate,
+    l.LocationID,
+    l.Name AS LocationName
+FROM 
+    [CompanyX].[Production].[ProductInventory] AS pi
+JOIN 
+    [CompanyX].[Production].[Location] AS l
+ON 
+    pi.LocationID = l.LocationID;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\InventoryDim\Inventory Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[Shelf]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[Shelf]"
+                      length="10"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[Shelf]"
+                      name="Shelf"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[Bin]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[Bin]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[Bin]"
+                      name="Bin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[LocationName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[LocationName]"
+                      length="50"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[LocationName]"
+                      name="LocationName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[LocationID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[LocationID]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[LocationID]"
+                      name="LocationID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[Shelf]"
+                      dataType="wstr"
+                      length="10"
+                      name="Shelf" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[Bin]"
+                      dataType="ui1"
+                      name="Bin" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="i2"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[LocationName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LocationName" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].ExternalColumns[LocationID]"
+                      dataType="i2"
+                      name="LocationID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[Shelf]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[Shelf]"
+                      name="Shelf" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[Bin]"
+                      dataType="ui1"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[Bin]"
+                      name="Bin" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="i2"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[LocationID]"
+                      dataType="i2"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[LocationID]"
+                      name="LocationID" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[LocationName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[LocationName]"
+                      name="LocationName" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\InventoryDim\InventoryDim"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="InventoryDim"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[InventoryDim]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\InventoryDim\InventoryDim.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      externalMetadataColumnId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].Columns[LocationID]"
+                      cachedDataType="i2"
+                      cachedName="LocationID"
+                      externalMetadataColumnId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[LocationID]" />
+                    <inputColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].Columns[Shelf]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Shelf"
+                      externalMetadataColumnId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[Shelf]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[Shelf]" />
+                    <inputColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].Columns[Bin]"
+                      cachedDataType="ui1"
+                      cachedName="Bin"
+                      externalMetadataColumnId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[Bin]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[Bin]" />
+                    <inputColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="i2"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      externalMetadataColumnId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].Columns[LocationName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="LocationName"
+                      externalMetadataColumnId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[LocationName]"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[LocationName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[InventoryID]"
+                      dataType="i4"
+                      name="InventoryID" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
+                      dataType="i2"
+                      name="LocationID" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[Shelf]"
+                      dataType="wstr"
+                      length="10"
+                      name="Shelf" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[Bin]"
+                      dataType="ui1"
+                      name="Bin" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="i2"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input].ExternalColumns[LocationName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LocationName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\InventoryDim\InventoryDim.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\InventoryDim\InventoryDim.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\InventoryDim\InventoryDim.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\InventoryDim\InventoryDim.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\InventoryDim\InventoryDim.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\InventoryDim\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select productid from dbo.InventoryDim</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select productid from dbo.InventoryDim) [refTable]
+where [refTable].[productid] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="productid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ProductID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\InventoryDim\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\InventoryDim\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\InventoryDim\Lookup.Inputs[Lookup Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      lineageId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output].Columns[ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">productid</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\InventoryDim\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\InventoryDim\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\InventoryDim\Lookup.Outputs[Lookup Match Output].Columns[productid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\InventoryDim\Lookup.Outputs[Lookup Match Output].Columns[productid]"
+                      name="productid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">productid</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\InventoryDim\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\InventoryDim\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\InventoryDim\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\InventoryDim\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\InventoryDim\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\InventoryDim\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\InventoryDim\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\InventoryDim\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\InventoryDim.Paths[Case 1]"
+              endId="Package\InventoryDim\Lookup.Inputs[Lookup Input]"
+              name="Case 1"
+              startId="Package\InventoryDim\Conditional Split.Outputs[Case 1]" />
+            <path
+              refId="Package\InventoryDim.Paths[Lookup No Match Output]"
+              endId="Package\InventoryDim\InventoryDim.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\InventoryDim\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\InventoryDim.Paths[OLE DB Source Output]"
+              endId="Package\InventoryDim\Conditional Split.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\InventoryDim\Inventory Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1868,8 +2585,8 @@ FROM Sales.SalesOrderHeader</property>
               <connections>
                 <connection
                   refId="Package\LocationDim\LocationDim.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2014,8 +2731,8 @@ where [refTable].[locationid] = ?</property>
               <connections>
                 <connection
                   refId="Package\LocationDim\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -2131,8 +2848,8 @@ WHERE [LocationID] = ?</property>
               <connections>
                 <connection
                   refId="Package\LocationDim\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2286,8 +3003,8 @@ WHERE [LocationID] = ?</property>
               <connections>
                 <connection
                   refId="Package\LocationDim\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2592,8 +3309,8 @@ where [refTable].[productid] = ?</property>
               <connections>
                 <connection
                   refId="Package\ProductDim\Lookup 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -2713,8 +3430,8 @@ WHERE [ProductID] = ?</property>
               <connections>
                 <connection
                   refId="Package\ProductDim\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2957,8 +3674,8 @@ ORDER BY
               <connections>
                 <connection
                   refId="Package\ProductDim\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3188,8 +3905,8 @@ ORDER BY
               <connections>
                 <connection
                   refId="Package\ProductDim\ProductDim.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3510,8 +4227,8 @@ where [refTable].[promotionid] = ?</property>
               <connections>
                 <connection
                   refId="Package\PromotionDim\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -3632,8 +4349,8 @@ WHERE [PromotionID] = ?</property>
               <connections>
                 <connection
                   refId="Package\PromotionDim\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3884,8 +4601,8 @@ WHERE [PromotionID] = ?</property>
               <connections>
                 <connection
                   refId="Package\PromotionDim\PromotionDim.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4065,8 +4782,8 @@ WHERE [PromotionID] = ?</property>
               <connections>
                 <connection
                   refId="Package\PromotionDim\Special Offer.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4422,40 +5139,40 @@ WHERE [PromotionID] = ?</property>
                   description="The SQL command to be executed."
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
-    sod.SalesOrderID AS TransactionID,
-    pd.ProductID,
-    cd.CustomerID,
-    td.TerritoryID,
-    ld.LocationID,
-    pmd.PromotionID,
-    dd.DateID,
-    sod.OrderQty AS QuantitySold,
-    sod.UnitPrice,
-    sod.LineTotal AS TotalSaleAmount,
-    sod.UnitPriceDiscount AS DiscountApplied,
-    pd.ModifiedDate
+    SOD.SalesOrderID AS TransactionID,
+    PD.ProductID,
+    TD.[TerritoryID],
+    PRD.PromotionID,
+    ID.InventoryID,
+    DD.DateID,
+    SOD.OrderQty AS QuantitySold,
+    SOD.UnitPrice,
+    SOD.LineTotal AS TotalSaleAmount,
+    SOD.UnitPriceDiscount AS DiscountApplied,
+    PD.ModifiedDate
 FROM 
-    [CompanyX].[Sales].[SalesOrderDetail] sod
+    [CompanyX].[Sales].[SalesOrderDetail] SOD
 INNER JOIN 
-    [CompanyX].[Production].[ProductInventory] pi ON sod.ProductID = pi.ProductID
+    [CompanyX].[dbo].[ProductDim] PD 
+    ON SOD.ProductID = PD.ProductID
 INNER JOIN 
-    [CompanyX].[dbo].[ProductDim] pd ON pd.ProductID = pi.ProductID
+    [CompanyX].[dbo].[InventoryDim] ID 
+    ON PD.ProductID = ID.ProductID
 INNER JOIN 
-    [CompanyX].[dbo].[LocationDim] ld ON ld.LocationID = pi.LocationID
+    [CompanyX].[Sales].[SalesOrderHeader] SOH
+    ON SOD.SalesOrderID = SOH.SalesOrderID
 INNER JOIN 
-    [CompanyX].[Sales].[SalesOrderHeader] soh ON soh.SalesOrderID = sod.SalesOrderID
+    [CompanyX].[dbo].[TerritoryDim] TD 
+    ON SOH.TerritoryID = TD.TerritoryID
 INNER JOIN 
-    [CompanyX].[dbo].[CustomerDim] cd ON soh.CustomerID = cd.CustomerID
+    [CompanyX].[Sales].[SpecialOfferProduct] SOP
+    ON SOD.SpecialOfferID = SOP.SpecialOfferID AND SOD.ProductID = SOP.ProductID
 INNER JOIN 
-    [CompanyX].[dbo].[TerritoryDim] td ON soh.TerritoryID = td.TerritoryID
+    [CompanyX].[dbo].[PromotionDim] PRD 
+    ON SOP.SpecialOfferID = PRD.PromotionID
 INNER JOIN 
-    [CompanyX].[Sales].[SpecialOfferProduct] sop ON sop.ProductID = pi.ProductID
-INNER JOIN 
-    [CompanyX].[dbo].[PromotionDim] pmd ON pmd.PromotionID = sop.SpecialOfferID
-INNER JOIN 
-    [CompanyX].[dbo].[DateDim] dd ON soh.OrderDate = dd.Orderdate
-WHERE 
-    pd.ModifiedDate IS NOT NULL;</property>
+    [CompanyX].[dbo].[DateDim] DD 
+    ON SOH.OrderDate = DD.Orderdate;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -4481,8 +5198,8 @@ WHERE
               <connections>
                 <connection
                   refId="Package\SalesFact\Dim Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4508,15 +5225,6 @@ WHERE
                       externalMetadataColumnId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
                       lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[ProductID]"
                       name="ProductID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[CustomerID]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[CustomerID]"
-                      name="CustomerID"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[TerritoryID]"
@@ -4584,15 +5292,6 @@ WHERE
                       name="DiscountApplied"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[LocationID]"
-                      dataType="i2"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[LocationID]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[LocationID]"
-                      name="LocationID"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
                       dataType="dbTimeStamp"
                       errorOrTruncationOperation="Conversion"
@@ -4600,6 +5299,15 @@ WHERE
                       externalMetadataColumnId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
                       lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
                       name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[InventoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[InventoryID]"
+                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[InventoryID]"
+                      name="InventoryID"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -4612,10 +5320,6 @@ WHERE
                       refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
                       dataType="i4"
                       name="ProductID" />
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
-                      dataType="i4"
-                      name="CustomerID" />
                     <externalMetadataColumn
                       refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
                       dataType="i4"
@@ -4647,13 +5351,13 @@ WHERE
                       dataType="cy"
                       name="DiscountApplied" />
                     <externalMetadataColumn
-                      refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[LocationID]"
-                      dataType="i2"
-                      name="LocationID" />
-                    <externalMetadataColumn
                       refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
                       dataType="dbTimeStamp"
                       name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].ExternalColumns[InventoryID]"
+                      dataType="i4"
+                      name="InventoryID" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -4672,25 +5376,20 @@ WHERE
                       lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[ProductID]"
                       name="ProductID" />
                     <outputColumn
-                      refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
-                      dataType="i4"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
-                      name="CustomerID" />
-                    <outputColumn
                       refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
                       dataType="i4"
                       lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
                       name="TerritoryID" />
                     <outputColumn
-                      refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[LocationID]"
-                      dataType="i2"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[LocationID]"
-                      name="LocationID" />
-                    <outputColumn
                       refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[PromotionID]"
                       dataType="i4"
                       lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[PromotionID]"
                       name="PromotionID" />
+                    <outputColumn
+                      refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[InventoryID]"
+                      dataType="i4"
+                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[InventoryID]"
+                      name="InventoryID" />
                     <outputColumn
                       refId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Error Output].Columns[DateID]"
                       dataType="i4"
@@ -4754,14 +5453,14 @@ WHERE
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select productid, territoryid, customerid, dateid, locationid, promotionid from dbo.salesfact</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select transactionid, productid, territoryid, promotionid, dateid, inventoryid from dbo.SalesFact</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select productid, territoryid, customerid, dateid, locationid, promotionid from dbo.salesfact) [refTable]
-where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].[territoryid] = ? and [refTable].[promotionid] = ? and [refTable].[dateid] = ? and [refTable].[locationid] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select transactionid, productid, territoryid, promotionid, dateid, inventoryid from dbo.SalesFact) [refTable]
+where [refTable].[transactionid] = ? and [refTable].[productid] = ? and [refTable].[territoryid] = ? and [refTable].[promotionid] = ? and [refTable].[dateid] = ? and [refTable].[inventoryid] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -4792,12 +5491,12 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="productid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="territoryid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="customerid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dateid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="locationid" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="promotionid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="transactionid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="productid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="territoryid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="promotionid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dateid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="inventoryid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[ProductID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[CustomerID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[TerritoryID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[PromotionID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[DateID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[LocationID]};</property>
+                  name="ParameterMap">#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[TransactionID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[ProductID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[TerritoryID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[PromotionID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[DateID]};#{Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[InventoryID]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -4810,8 +5509,8 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
               <connections>
                 <connection
                   refId="Package\SalesFact\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -4820,6 +5519,22 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                   refId="Package\SalesFact\Lookup.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
+                    <inputColumn
+                      refId="Package\SalesFact\Lookup.Inputs[Lookup Input].Columns[TransactionID]"
+                      cachedDataType="i4"
+                      cachedName="TransactionID"
+                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[TransactionID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">transactionid</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
                     <inputColumn
                       refId="Package\SalesFact\Lookup.Inputs[Lookup Input].Columns[ProductID]"
                       cachedDataType="i4"
@@ -4830,22 +5545,6 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
                           name="JoinToReferenceColumn">productid</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\SalesFact\Lookup.Inputs[Lookup Input].Columns[CustomerID]"
-                      cachedDataType="i4"
-                      cachedName="CustomerID"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[CustomerID]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">customerid</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -4869,6 +5568,22 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                       </properties>
                     </inputColumn>
                     <inputColumn
+                      refId="Package\SalesFact\Lookup.Inputs[Lookup Input].Columns[PromotionID]"
+                      cachedDataType="i4"
+                      cachedName="PromotionID"
+                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[PromotionID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">promotionid</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
                       refId="Package\SalesFact\Lookup.Inputs[Lookup Input].Columns[DateID]"
                       cachedDataType="i4"
                       cachedName="DateID"
@@ -4885,31 +5600,15 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\SalesFact\Lookup.Inputs[Lookup Input].Columns[LocationID]"
-                      cachedDataType="i2"
-                      cachedName="LocationID"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[LocationID]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">locationid</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\SalesFact\Lookup.Inputs[Lookup Input].Columns[PromotionID]"
+                      refId="Package\SalesFact\Lookup.Inputs[Lookup Input].Columns[InventoryID]"
                       cachedDataType="i4"
-                      cachedName="PromotionID"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[PromotionID]">
+                      cachedName="InventoryID"
+                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[InventoryID]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">promotionid</property>
+                          name="JoinToReferenceColumn">inventoryid</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -4929,6 +5628,20 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                   synchronousInputId="Package\SalesFact\Lookup.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
+                      refId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[transactionid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[transactionid]"
+                      name="transactionid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">transactionid</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
                       refId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[productid]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
@@ -4940,20 +5653,6 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
                           name="CopyFromReferenceColumn">productid</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[customerid]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[customerid]"
-                      name="customerid"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">customerid</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -4971,6 +5670,20 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                       </properties>
                     </outputColumn>
                     <outputColumn
+                      refId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[promotionid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[promotionid]"
+                      name="promotionid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">promotionid</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
                       refId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[dateid]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
@@ -4985,31 +5698,17 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[locationid]"
-                      dataType="i2"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[locationid]"
-                      name="locationid"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">locationid</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[promotionid]"
+                      refId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[inventoryid]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[promotionid]"
-                      name="promotionid"
+                      lineageId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[inventoryid]"
+                      name="inventoryid"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">promotionid</property>
+                          name="CopyFromReferenceColumn">inventoryid</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -5040,322 +5739,6 @@ where [refTable].[productid] = ? and [refTable].[customerid] = ? and [refTable].
                       refId="Package\SalesFact\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\SalesFact\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\SalesFact\OLE DB Command"
-              componentClassID="Microsoft.OLEDBCommand"
-              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="OLE DB Command"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE dbo.SalesFact
-SET [TransactionID] = ?
-      ,[ProductID] = ?
-      ,[CustomerID] = ?
-      ,[TerritoryID] =?
-      ,[PromotionID] = ?
-      ,[DateID] = ?
-      ,[QuantitySold] = ?
-      ,[UnitPrice] = ?
-      ,[TotalSaleAmount] = ?
-      ,[DiscountApplied] = ?
-      ,[LocationID] = ?
-      ,[ModifiedDate] = ?
-WHERE [SalesFactID] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\SalesFact\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input]"
-                  errorOrTruncationOperation="Command Execution"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Command Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[TransactionID]"
-                      cachedDataType="i4"
-                      cachedName="TransactionID"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[TransactionID]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[ProductID]"
-                      cachedDataType="i4"
-                      cachedName="ProductID"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[ProductID]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[CustomerID]"
-                      cachedDataType="i4"
-                      cachedName="CustomerID"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[CustomerID]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[TerritoryID]"
-                      cachedDataType="i4"
-                      cachedName="TerritoryID"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[TerritoryID]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[PromotionID]"
-                      cachedDataType="i4"
-                      cachedName="PromotionID"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[PromotionID]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[DateID]"
-                      cachedDataType="i4"
-                      cachedName="DateID"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[DateID]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[QuantitySold]"
-                      cachedDataType="i2"
-                      cachedName="QuantitySold"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[QuantitySold]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[UnitPrice]"
-                      cachedDataType="cy"
-                      cachedName="UnitPrice"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[TotalSaleAmount]"
-                      cachedDataType="numeric"
-                      cachedName="TotalSaleAmount"
-                      cachedPrecision="38"
-                      cachedScale="6"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[TotalSaleAmount]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[DiscountApplied]"
-                      cachedDataType="cy"
-                      cachedName="DiscountApplied"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[DiscountApplied]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[LocationID]"
-                      cachedDataType="i2"
-                      cachedName="LocationID"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[LocationID]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[ModifiedDate]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="ModifiedDate"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
-                    <inputColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].Columns[dateid]"
-                      cachedDataType="i4"
-                      cachedName="dateid"
-                      externalMetadataColumnId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
-                      lineageId="Package\SalesFact\Lookup.Outputs[Lookup Match Output].Columns[dateid]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="i4"
-                      name="Param_0">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      dataType="i4"
-                      name="Param_1">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="i4"
-                      name="Param_2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      dataType="i4"
-                      name="Param_3">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      dataType="i4"
-                      name="Param_4">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      dataType="i4"
-                      name="Param_5">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
-                      dataType="i2"
-                      name="Param_6">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
-                      dataType="cy"
-                      name="Param_7">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
-                      dataType="numeric"
-                      name="Param_8"
-                      precision="38"
-                      scale="6">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
-                      dataType="cy"
-                      name="Param_9">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
-                      dataType="i2"
-                      name="Param_10">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
-                      dataType="dbTimeStamp"
-                      name="Param_11">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
-                      dataType="i4"
-                      name="Param_12">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\SalesFact\OLE DB Command.Outputs[OLE DB Command Output]"
-                  exclusionGroup="1"
-                  name="OLE DB Command Output"
-                  synchronousInputId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\SalesFact\OLE DB Command.Outputs[OLE DB Command Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Command Error Output"
-                  synchronousInputId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\SalesFact\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\SalesFact\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\SalesFact\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\SalesFact\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -5401,7 +5784,7 @@ WHERE [SalesFactID] = ?</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -5422,8 +5805,8 @@ WHERE [SalesFactID] = ?</property>
               <connections>
                 <connection
                   refId="Package\SalesFact\SalesFact.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5447,12 +5830,6 @@ WHERE [SalesFactID] = ?</property>
                       cachedName="ProductID"
                       externalMetadataColumnId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
                       lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[ProductID]" />
-                    <inputColumn
-                      refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].Columns[CustomerID]"
-                      cachedDataType="i4"
-                      cachedName="CustomerID"
-                      externalMetadataColumnId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[CustomerID]" />
                     <inputColumn
                       refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
                       cachedDataType="i4"
@@ -5498,20 +5875,24 @@ WHERE [SalesFactID] = ?</property>
                       externalMetadataColumnId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[DiscountApplied]"
                       lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[DiscountApplied]" />
                     <inputColumn
-                      refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].Columns[LocationID]"
-                      cachedDataType="i2"
-                      cachedName="LocationID"
-                      externalMetadataColumnId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
-                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[LocationID]" />
-                    <inputColumn
                       refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].Columns[ModifiedDate]"
                       cachedDataType="dbTimeStamp"
                       cachedName="ModifiedDate"
                       externalMetadataColumnId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
                       lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].Columns[InventoryID]"
+                      cachedDataType="i4"
+                      cachedName="InventoryID"
+                      externalMetadataColumnId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[InventoryID]"
+                      lineageId="Package\SalesFact\Dim Source.Outputs[OLE DB Source Output].Columns[InventoryID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[SalesFactID]"
+                      dataType="i4"
+                      name="SalesFactID" />
                     <externalMetadataColumn
                       refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[TransactionID]"
                       dataType="i4"
@@ -5520,10 +5901,6 @@ WHERE [SalesFactID] = ?</property>
                       refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
                       dataType="i4"
                       name="ProductID" />
-                    <externalMetadataColumn
-                      refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
-                      dataType="i4"
-                      name="CustomerID" />
                     <externalMetadataColumn
                       refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryID]"
                       dataType="i4"
@@ -5555,17 +5932,13 @@ WHERE [SalesFactID] = ?</property>
                       dataType="cy"
                       name="DiscountApplied" />
                     <externalMetadataColumn
-                      refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[LocationID]"
-                      dataType="i2"
-                      name="LocationID" />
-                    <externalMetadataColumn
                       refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
                       dataType="dbTimeStamp"
                       name="ModifiedDate" />
                     <externalMetadataColumn
-                      refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[SalesFactID]"
+                      refId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input].ExternalColumns[InventoryID]"
                       dataType="i4"
-                      name="SalesFactID" />
+                      name="InventoryID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -5601,11 +5974,6 @@ WHERE [SalesFactID] = ?</property>
               endId="Package\SalesFact\Lookup.Inputs[Lookup Input]"
               name="Case 1"
               startId="Package\SalesFact\Conditional Split.Outputs[Case 1]" />
-            <path
-              refId="Package\SalesFact.Paths[Lookup Match Output]"
-              endId="Package\SalesFact\OLE DB Command.Inputs[OLE DB Command Input]"
-              name="Lookup Match Output"
-              startId="Package\SalesFact\Lookup.Outputs[Lookup Match Output]" />
             <path
               refId="Package\SalesFact.Paths[Lookup No Match Output]"
               endId="Package\SalesFact\SalesFact.Inputs[OLE DB Destination Input]"
@@ -5796,8 +6164,8 @@ where [refTable].[territoryid] = ?</property>
               <connections>
                 <connection
                   refId="Package\TerritoryDim\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -5914,8 +6282,8 @@ WHERE [TerritoryID] =?</property>
               <connections>
                 <connection
                   refId="Package\TerritoryDim\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -6088,8 +6456,8 @@ WHERE [TerritoryID] =?</property>
               <connections>
                 <connection
                   refId="Package\TerritoryDim\Territory Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -6287,8 +6655,8 @@ WHERE [TerritoryID] =?</property>
               <connections>
                 <connection
                   refId="Package\TerritoryDim\TerritoryDim.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.CompanyX]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.CompanyX]"
+                  connectionManagerID="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAKE\MSSQLSERVER01.CompanyX]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -6459,6 +6827,14 @@ WHERE [TerritoryID] =?</property>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 6"
       DTS:To="Package\LocationDim" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{88013F79-1418-472D-9EBC-8A4E654D0357}"
+      DTS:From="Package\Execute SQL Task 7"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\InventoryDim" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -6473,64 +6849,72 @@ WHERE [TerritoryID] =?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="141.6,41.6"
+          Size="142.4,41.6"
           Id="Package\CustomerDim"
-          TopLeft="17.857142895156,81.8235293400433" />
+          TopLeft="67.8571401632765,367.823527351235" />
         <NodeLayout
           Size="119.2,41.6"
           Id="Package\DateDim"
-          TopLeft="95.7142859180362,216.411764516189" />
+          TopLeft="134.047617156929,231.145097747068" />
         <NodeLayout
           Size="162.4,41.6"
           Id="Package\Execute SQL Task"
-          TopLeft="14.285714316125,6.15294117177851" />
+          TopLeft="64.2857115842455,292.15293918297" />
         <NodeLayout
           Size="172,41.6"
           Id="Package\Execute SQL Task 1"
-          TopLeft="189.285714688654,6.88235293514382" />
+          TopLeft="324.285707312579,167.215685153539" />
         <NodeLayout
           Size="172,41.6"
           Id="Package\Execute SQL Task 2"
-          TopLeft="373.571429366664,8.41176469850911" />
+          TopLeft="105.238110694417,16.2117646442689" />
         <NodeLayout
           Size="172,41.6"
           Id="Package\Execute SQL Task 3"
-          TopLeft="580.40000121338,9.85882359510011" />
+          TopLeft="312.066682541133,17.6588235408599" />
         <NodeLayout
           Size="172,41.6"
           Id="Package\Execute SQL Task 4"
-          TopLeft="65.7142858541743,152.176470454847" />
+          TopLeft="103.214283805265,166.909803685726" />
         <NodeLayout
-          Size="172,41.6"
+          Size="173.6,41.6"
           Id="Package\Execute SQL Task 5"
-          TopLeft="512.857143948881,149.117646928116" />
+          TopLeft="539.523809158544,167.317646801555" />
         <NodeLayout
           Size="172,41.6"
           Id="Package\Execute SQL Task 6"
-          TopLeft="278.828572017015,144.52941163802" />
+          TopLeft="273.828572290203,300.529410553215" />
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\Execute SQL Task 7"
+          TopLeft="523.333304739661,16.4666665521598" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\InventoryDim"
+          TopLeft="534.999970768889,94.4666660097568" />
         <NodeLayout
           Size="136,41.6"
           Id="Package\LocationDim"
-          TopLeft="294.542857764753,216.411764516189" />
+          TopLeft="290.376191325743,372.411763431384" />
         <NodeLayout
           Size="132.8,41.6"
           Id="Package\ProductDim"
-          TopLeft="593.357144108536,86.4764705915881" />
+          TopLeft="325.023825436289,94.2764705373479" />
         <NodeLayout
           Size="144.8,41.6"
           Id="Package\PromotionDim"
-          TopLeft="383.514286503439,75.705882286582" />
+          TopLeft="115.180967831192,83.5058822323418" />
         <NodeLayout
           Size="122.4,41.6"
           Id="Package\SalesFact"
-          TopLeft="539.542858286294,220.999999806285" />
+          TopLeft="570.376189934967,240.933333001005" />
         <NodeLayout
-          Size="137.6,41.6"
+          Size="136,41.6"
           Id="Package\TerritoryDim"
-          TopLeft="206.428571868004,72.6470587598515" />
+          TopLeft="341.428564491929,232.980390978247" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="92.0714286056405,47.7529411717785">
+          TopLeft="142.271425873761,333.75293918297">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6552,7 +6936,7 @@ WHERE [TerritoryID] =?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="275.257143278329,48.4823529351438">
+          TopLeft="409.857135902254,208.815685153539">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6574,7 +6958,7 @@ WHERE [TerritoryID] =?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="457.742857935052,50.0117646985091">
+          TopLeft="189.409539262805,57.8117646442689">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6596,7 +6980,7 @@ WHERE [TerritoryID] =?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="663.078572660958,51.4588235951001">
+          TopLeft="394.745253988711,59.2588235408599">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6618,7 +7002,7 @@ WHERE [TerritoryID] =?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="153.514285886105,193.776470454847">
+          TopLeft="191.430950481096,208.509803685726">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -6640,18 +7024,18 @@ WHERE [TerritoryID] =?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="599.800001117587,190.717646928116">
+          TopLeft="628.949999546755,208.917646801555">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,30.2823528781687"
+              EndConnector="0,32.01568619945"
               Start="0,0"
-              End="0,22.7823528781687">
+              End="0,24.51568619945">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.7823528781687" />
+                    End="0,24.51568619945" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6662,18 +7046,40 @@ WHERE [TerritoryID] =?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="363.685714890884,186.12941163802">
+          TopLeft="359.102381807973,342.129410553215">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,30.2823528781688"
+              EndConnector="0,30.282352878169"
               Start="0,0"
-              End="0,22.7823528781688">
+              End="0,22.782352878169">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.7823528781688" />
+                    End="0,22.782352878169" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="607.566637754275,58.0666665521598">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.399999457597"
+              Start="0,0"
+              End="0,28.899999457597">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.899999457597" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6729,7 +7135,9 @@ WHERE [TerritoryID] =?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6764,7 +7172,7 @@ WHERE [TerritoryID] =?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="17.6602788303297,16.938647445596,111.6127734375,11.609375"
+              BoundingBox="17.6602788303295,16.938647445596,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6886,21 +7294,25 @@ WHERE [TerritoryID] =?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\DateDim\OLE DB Source"
-          TopLeft="211.285711380596,61.1764692583711" />
-        <NodeLayout
           Size="119.2,41.6"
           Id="Package\DateDim\DateDim"
           TopLeft="457.999993175268,325.999995142222" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DateDim\Derived Column"
+          TopLeft="427.999993622303,132.59999846518" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\DateDim\Lookup"
+          TopLeft="220.999996706843,284.999995753169" />
         <NodeLayout
           Size="154.4,41.6"
           Id="Package\DateDim\Conditional Split"
           TopLeft="238.999996438623,172.999997422099" />
         <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\DateDim\Lookup"
-          TopLeft="220.999996706843,284.999995753169" />
+          Size="149.6,41.6"
+          Id="Package\DateDim\OLE DB Source"
+          TopLeft="211.285711380596,61.1764692583711" />
         <EdgeLayout
           Id="Package\DateDim.Paths[Case 1]"
           TopLeft="316.199996438623,214.599997422099">
@@ -6933,7 +7345,43 @@ WHERE [TerritoryID] =?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-34.6180858033896,40.199999165535,30.436171875,9.5537109375"
+              BoundingBox="-34.6180858033895,40.199999165535,30.436171875,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DateDim.Paths[OLE DB Source Output]"
+          TopLeft="286.085711380596,102.776469258371">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="218.314282241707,29.8235292068093"
+              Start="0,0"
+              End="218.314282241707,22.3235292068093">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.9117646034047" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.9117646034047"
+                    Point2="0,14.9117646034047"
+                    Point3="4,14.9117646034047" />
+                  <mssgle:LineSegment
+                    End="214.314282241707,14.9117646034047" />
+                  <mssgle:CubicBezierSegment
+                    Point1="214.314282241707,14.9117646034047"
+                    Point2="218.314282241707,14.9117646034047"
+                    Point3="218.314282241707,18.9117646034047" />
+                  <mssgle:LineSegment
+                    End="218.314282241707,22.3235292068093" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6969,46 +7417,8 @@ WHERE [TerritoryID] =?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="6.29361151546239,-17.609375,111.6127734375,11.609375"
+              BoundingBox="6.2936115154624,-17.609375,111.6127734375,11.609375"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\DateDim\Derived Column"
-          TopLeft="427.999993622303,132.59999846518" />
-        <EdgeLayout
-          Id="Package\DateDim.Paths[OLE DB Source Output]"
-          TopLeft="286.085711380596,102.776469258371">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="218.314282241707,29.8235292068093"
-              Start="0,0"
-              End="218.314282241707,22.3235292068093">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,10.9117646034047" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.9117646034047"
-                    Point2="0,14.9117646034047"
-                    Point3="4,14.9117646034047" />
-                  <mssgle:LineSegment
-                    End="214.314282241707,14.9117646034047" />
-                  <mssgle:CubicBezierSegment
-                    Point1="214.314282241707,14.9117646034047"
-                    Point2="218.314282241707,14.9117646034047"
-                    Point3="218.314282241707,18.9117646034047" />
-                  <mssgle:LineSegment
-                    End="218.314282241707,22.3235292068093" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7042,7 +7452,9 @@ WHERE [TerritoryID] =?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -7053,6 +7465,215 @@ WHERE [TerritoryID] =?</property>
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DateDim\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DateDim\DateDim">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\InventoryDim">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\InventoryDim\Lookup"
+          TopLeft="455.999993205071,232.999996528029" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\InventoryDim\Conditional Split"
+          TopLeft="367.999994516373,158.999997630715" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\InventoryDim\InventoryDim"
+          TopLeft="619.99999076128,246.999996319413" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\InventoryDim\Inventory Source"
+          TopLeft="291.999995648861,100.999998494983" />
+        <EdgeLayout
+          Id="Package\InventoryDim.Paths[OLE DB Source Output]"
+          TopLeft="448.799995648861,121.799998494983">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-4.00000113248791,37.1999991357328"
+              Start="0,0"
+              End="-4.00000113248791,29.6999991357328">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-1.13248790967191E-06,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-1.13248790967191E-06,0"
+                    Point2="-4.00000113248791,0"
+                    Point3="-4.00000113248791,4" />
+                  <mssgle:LineSegment
+                    End="-4.00000113248791,29.6999991357328" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InventoryDim.Paths[Lookup No Match Output]"
+          TopLeft="568.799993205071,253.799996528029">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51.1999975562094,13.999999791384"
+              Start="0,0"
+              End="43.6999975562094,13.999999791384">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="21.5999987781047,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.5999987781047,0"
+                    Point2="25.5999987781047,0"
+                    Point3="25.5999987781047,4" />
+                  <mssgle:LineSegment
+                    End="25.5999987781047,9.99999979138397" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.5999987781047,9.99999979138397"
+                    Point2="25.5999987781047,13.999999791384"
+                    Point3="29.5999987781047,13.999999791384" />
+                  <mssgle:LineSegment
+                    End="43.6999975562094,13.999999791384" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-30.2063879406453,-17.609375,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\InventoryDim.Paths[Case 1]"
+          TopLeft="444.799994516373,200.599997630715">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.5999986886979,32.399998897314"
+              Start="0,0"
+              End="67.5999986886979,24.899998897314">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.199999448657" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.199999448657"
+                    Point2="0,16.199999448657"
+                    Point3="4,16.199999448657" />
+                  <mssgle:LineSegment
+                    End="63.5999986886979,16.199999448657" />
+                  <mssgle:CubicBezierSegment
+                    Point1="63.5999986886979,16.199999448657"
+                    Point2="67.5999986886979,16.199999448657"
+                    Point3="67.5999986886979,20.199999448657" />
+                  <mssgle:LineSegment
+                    End="67.5999986886979,24.899998897314" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="18.5819134068489,21.199999448657,30.436171875,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\InventoryDim\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\InventoryDim\InventoryDim">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\InventoryDim\Inventory Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -7107,37 +7728,37 @@ WHERE [TerritoryID] =?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\LocationDim.Paths[Lookup No Match Output]"
-          TopLeft="265.295238502739,238.894117474123">
+          TopLeft="265.29523850274,238.894117474123">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="116.990476452007,35.6352940499473"
+              EndConnector="116.990476452006,35.635294049947"
               Start="0,0"
-              End="116.990476452007,28.1352940499473">
+              End="116.990476452006,28.135294049947">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10.5531550525659" />
+                    End="0,10.5531550525658" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,10.5531550525659"
-                    Point2="0,14.5531550525659"
-                    Point3="4,14.5531550525659" />
+                    Point1="0,10.5531550525658"
+                    Point2="0,14.5531550525658"
+                    Point3="4,14.5531550525658" />
                   <mssgle:LineSegment
-                    End="112.990476452007,14.5531550525659" />
+                    End="112.990476452006,14.5531550525658" />
                   <mssgle:CubicBezierSegment
-                    Point1="112.990476452007,14.5531550525659"
-                    Point2="116.990476452007,14.5531550525659"
-                    Point3="116.990476452007,18.5531550525659" />
+                    Point1="112.990476452006,14.5531550525658"
+                    Point2="116.990476452006,14.5531550525658"
+                    Point3="116.990476452006,18.5531550525658" />
                   <mssgle:LineSegment
-                    End="116.990476452007,28.1352940499473" />
+                    End="116.990476452006,28.135294049947" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="2.68885150725335,19.5531550525659,111.6127734375,11.609375"
+              BoundingBox="2.68885150725318,19.5531550525658,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -7197,7 +7818,7 @@ WHERE [TerritoryID] =?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-30.20587890625,5.17728052949306,60.4117578125,11.6630859375"
+              BoundingBox="-30.20587890625,5.17728052949305,60.4117578125,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -7494,9 +8115,7 @@ WHERE [TerritoryID] =?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7531,7 +8150,7 @@ WHERE [TerritoryID] =?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-0.539720886548515,20.437201695726,111.6127734375,11.609375"
+              BoundingBox="-0.539720886548501,20.437201695726,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -7651,33 +8270,109 @@ WHERE [TerritoryID] =?</property>
     design-time-name="Package\SalesFact">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\SalesFact\Lookup"
+          TopLeft="159.999997615814,193.999997109175" />
+        <NodeLayout
+          Size="124.8,41.6"
+          Id="Package\SalesFact\SalesFact"
+          TopLeft="397.999994069338,183.999997258186" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\SalesFact\Conditional Split"
+          TopLeft="137.99999794364,86.999998703599" />
         <NodeLayout
           Size="132.8,41.6"
           Id="Package\SalesFact\Dim Source"
-          TopLeft="125.714285981899,7.64705881682643" />
-        <NodeLayout
-          Size="122.4,41.6"
-          Id="Package\SalesFact\SalesFact"
-          TopLeft="306.392860298483,245.885295320709" />
-        <NodeLayout
-          Size="154.4,41.6"
-          Id="Package\SalesFact\Conditional Split"
-          TopLeft="114.285714528999,85.6470587484564" />
+          TopLeft="137.714285803085,10.6470587721229" />
         <EdgeLayout
-          Id="Package\SalesFact.Paths[OLE DB Source Output]"
-          TopLeft="191.800000255449,49.2470588168264">
+          Id="Package\SalesFact.Paths[Lookup No Match Output]"
+          TopLeft="272.799997615814,214.799997109175">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36.39999993163"
+              EndConnector="125.199996453524,-9.99999985098836"
               Start="0,0"
-              End="0,28.89999993163">
+              End="117.699996453524,-9.99999985098836">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.89999993163" />
+                    End="58.5999982267618,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58.5999982267618,0"
+                    Point2="62.5999982267618,0"
+                    Point3="62.5999982267618,-4" />
+                  <mssgle:LineSegment
+                    End="62.5999982267618,-5.99999985098836" />
+                  <mssgle:CubicBezierSegment
+                    Point1="62.5999982267618,-5.99999985098836"
+                    Point2="62.5999982267618,-9.99999985098836"
+                    Point3="66.5999982267618,-9.99999985098836" />
+                  <mssgle:LineSegment
+                    End="117.699996453524,-9.99999985098836" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="6.79361150801181,1,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SalesFact.Paths[Case 1]"
+          TopLeft="215.599997779727,128.599998703599">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65.3999984055758"
+              Start="0,0"
+              End="0,57.8999984055758">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.8999984055758" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.2180859375,24.1731437340379,30.436171875,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SalesFact.Paths[OLE DB Source Output]"
+          TopLeft="204.114285803085,52.247058772123">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.6857121405547,34.752939931476"
+              Start="0,0"
+              End="10.6857121405547,27.252939931476">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.376469965738" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.376469965738"
+                    Point2="0,17.376469965738"
+                    Point3="4,17.376469965738" />
+                  <mssgle:LineSegment
+                    End="6.68571214055467,17.376469965738" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.68571214055467,17.376469965738"
+                    Point2="10.6857121405547,17.376469965738"
+                    Point3="10.6857121405547,21.376469965738" />
+                  <mssgle:LineSegment
+                    End="10.6857121405547,27.252939931476" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7686,128 +8381,27 @@ WHERE [TerritoryID] =?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\SalesFact\Lookup"
-          TopLeft="146.428571740279,167.4705880885" />
-        <EdgeLayout
-          Id="Package\SalesFact.Paths[Case 1]"
-          TopLeft="191.485714528999,127.247058748456">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="11.3428572112809,40.2235293400433"
-              Start="0,0"
-              End="11.3428572112809,32.7235293400433">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16.1117646700216" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16.1117646700216"
-                    Point2="0,20.1117646700216"
-                    Point3="4,20.1117646700216" />
-                  <mssgle:LineSegment
-                    End="7.34285721128089,20.1117646700216" />
-                  <mssgle:CubicBezierSegment
-                    Point1="7.34285721128089,20.1117646700216"
-                    Point2="11.3428572112809,20.1117646700216"
-                    Point3="11.3428572112809,24.1117646700216" />
-                  <mssgle:LineSegment
-                    End="11.3428572112809,32.7235293400433" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-9.54665733185955,25.1117646700216,30.436171875,9.5537109375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\SalesFact.Paths[Lookup No Match Output]"
-          TopLeft="220.295238406946,209.0705880885">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="147.297621891537,36.8147072322094"
-              Start="0,0"
-              End="147.297621891537,29.3147072322094">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.0348174990282" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.0348174990282"
-                    Point2="0,15.0348174990282"
-                    Point3="4,15.0348174990282" />
-                  <mssgle:LineSegment
-                    End="143.297621891537,15.0348174990282" />
-                  <mssgle:CubicBezierSegment
-                    Point1="143.297621891537,15.0348174990282"
-                    Point2="147.297621891537,15.0348174990282"
-                    Point3="147.297621891537,19.0348174990282" />
-                  <mssgle:LineSegment
-                    End="147.297621891537,29.3147072322094" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="17.8424242270183,20.0348174990282,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\SalesFact\OLE DB Command"
-          TopLeft="6.07142858435304,251.205882132749" />
-        <EdgeLayout
-          Id="Package\SalesFact.Paths[Lookup Match Output]"
-          TopLeft="202.828571740279,209.0705880885">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-114.357143155926,42.1352940442498"
-              Start="0,0"
-              End="-114.357143155926,34.6352940442498">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,17.0676470221249" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,17.0676470221249"
-                    Point2="0,21.0676470221249"
-                    Point3="-4,21.0676470221249" />
-                  <mssgle:LineSegment
-                    End="-110.357143155926,21.0676470221249" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-110.357143155926,21.0676470221249"
-                    Point2="-114.357143155926,21.0676470221249"
-                    Point3="-114.357143155926,25.0676470221249" />
-                  <mssgle:LineSegment
-                    End="-114.357143155926,34.6352940442498" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-105.369958296713,26.0676470221249,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SalesFact\Dim Source">
+    design-time-name="Package\SalesFact\Lookup">
     <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -7823,6 +8417,14 @@ WHERE [TerritoryID] =?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SalesFact\Dim Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -8015,65 +8617,6 @@ WHERE [TerritoryID] =?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DateDim\DateDim">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DateDim\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SalesFact\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
